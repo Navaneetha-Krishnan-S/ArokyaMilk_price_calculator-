@@ -1,3 +1,17 @@
+// Function to display the current date
+function displayCurrentDate() {
+    const date = new Date();
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    const formattedDate = `${day}/${month}/${year}`;
+    document.getElementById('currentDate').innerText = formattedDate;
+}
+
+// Call the function to display the date when the page loads
+displayCurrentDate();
+
+
 // Function to calculate and display values for input fields
 function calculateField(id, multiplier) {
     const input = document.getElementById(id);
@@ -72,12 +86,26 @@ function resetForm() {
 
 // Function to save the page as an image
 function saveAsImage() {
+    // Temporarily set a fixed height to capture the full content
+    const originalHeight = document.body.style.height;
+    document.body.style.height = document.body.scrollHeight + 'px';
+
     html2canvas(document.body, {
-        scale: 2, // Increase the scale for better quality
+        scrollX: 0,
+        scrollY: 0,
+        useCORS: true, // Enable CORS if needed
+        onclone: (document) => {
+            document.body.style.height = document.body.scrollHeight + 'px';
+        }
     }).then(canvas => {
         const link = document.createElement('a');
         link.href = canvas.toDataURL('image/jpeg');
         link.download = 'siva_milk_agency.jpg';
         link.click();
+
+        // Restore original height after capturing
+        document.body.style.height = originalHeight;
+    }).catch(err => {
+        console.error('Error capturing the page:', err);
     });
 }
