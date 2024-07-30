@@ -21,6 +21,9 @@
             flex-direction: column;
             margin: 0;
         }
+        .container {
+            flex: 1;
+        }
         .form-label {
             font-weight: bold;
             color: orange; /* Set label text color to orange */
@@ -44,6 +47,9 @@
             padding: 15px;
             color: white;
             text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
             margin-top: auto; /* Push footer to the bottom */
         }
         @media (max-width: 576px) {
@@ -171,10 +177,10 @@
         <button type="button" class="btn btn-primary" onclick="saveAsImage()">Save</button>
     </div>
 </div>
-
 <div class="footer">
     <p>Created by Navaneetha Krishnan | <a href="https://navaneethakrishnan.rf.gd/" style="color: white;">Contact</a></p>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="script.js"></script>
 </body>
