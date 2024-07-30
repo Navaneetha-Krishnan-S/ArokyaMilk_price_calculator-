@@ -90,20 +90,25 @@ function resetForm() {
 
 // Function to save the page as an image
 function saveAsImage() {
-    // Ensure full content is visible before capturing
-    document.body.style.height = "auto";
-    
+    // Temporarily set a fixed height to capture the full content
+    const originalHeight = document.body.style.height;
+    document.body.style.height = document.body.scrollHeight + 'px';
+
     html2canvas(document.body, {
         scrollX: 0,
         scrollY: 0,
-        width: document.body.scrollWidth,
-        height: document.body.scrollHeight,
-        useCORS: true // Enable CORS if needed
+        useCORS: true, // Enable CORS if needed
+        onclone: (document) => {
+            document.body.style.height = document.body.scrollHeight + 'px';
+        }
     }).then(canvas => {
         const link = document.createElement('a');
         link.href = canvas.toDataURL('image/jpeg');
         link.download = 'siva_milk_agency.jpg';
         link.click();
+
+        // Restore original height after capturing
+        document.body.style.height = originalHeight;
     }).catch(err => {
         console.error('Error capturing the page:', err);
     });
