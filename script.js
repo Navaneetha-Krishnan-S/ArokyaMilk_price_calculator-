@@ -33,48 +33,22 @@ function calculateTotal() {
     const tenRupeesCupTotal = document.getElementById('tenRupeesCupValue').textContent.match(/\d+/) ? parseInt(document.getElementById('tenRupeesCupValue').textContent.match(/\d+/)[0]) : 0;
     const balance = parseInt(document.getElementById('balance').value) || 0;
 
-    // Calculate the total with the balance
-    let total = halfLitreMilkTotal + quarterLitreMilkTotal + oneLitreMilkTotal +
-        tenRupeesMilkTotal + tenRupeesCurdTotal + halfPackCurdTotal + tenRupeesCupTotal;
+    let total = halfLitreMilkTotal + quarterLitreMilkTotal + oneLitreMilkTotal + tenRupeesMilkTotal + tenRupeesCurdTotal + halfPackCurdTotal + tenRupeesCupTotal;
 
     // Adjust the total based on the balance value
-    if (balance < 0) {
-        total += balance; // Subtract if balance is negative
-    } else {
-        total += balance; // Add if balance is positive or zero
-    }
+    total += balance; // Add or subtract balance as per its value
 
     document.getElementById('totalAmount').textContent = total;
 }
 
-function performCalculation() {
-    const value1 = parseFloat(document.getElementById('calcInput1').value);
-    const operator = document.getElementById('operator').value.trim();
-    const value2 = parseFloat(document.getElementById('calcInput2').value);
-    let result = 0;
+function resetForm() {
+    document.getElementById('orderForm').reset();
+    document.querySelectorAll('.calculated-value').forEach(el => el.textContent = '₹0');
+    document.getElementById('totalAmount').textContent = '0';
+}
 
-    switch (operator) {
-        case '+':
-            result = value1 + value2;
-            break;
-        case '-':
-            result = value1 - value2;
-            break;
-        case '*':
-            result = value1 * value2;
-            break;
-        case '/':
-            if (value2 !== 0) {
-                result = value1 / value2;
-            } else {
-                result = 'Infinity';
-            }
-            break;
-        default:
-            result = 'Invalid operator';
-    }
-
-    document.getElementById('calcResult').textContent = result;
+function printPage() {
+    window.print();
 }
 
 // Initial total calculation in case the form is pre-filled
