@@ -6,24 +6,21 @@
     <title>Siva Milk Agency</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .header, footer {
-            background: linear-gradient(90deg, #FE5858, #EE9617);
+        .header {
+            background: linear-gradient(to right, #FE5858, #EE9617);
             padding: 15px;
             text-align: center;
-            color: white;
         }
         .header h1 {
-            margin: 0;
+            color: white;
         }
         body {
             background-color: ghostwhite;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
         .form-label {
             font-weight: bold;
-            color: black;
+            color: orange; /* Set label text color to orange */
         }
         .input-group-lg > .form-control {
             padding: .5rem 1rem;
@@ -33,22 +30,18 @@
         .calculated-value {
             font-weight: bold;
             color: green;
-            margin-top: 5px;
-            font-size: 1.2rem;
+            margin-top: 5px; /* Space above the calculated value */
+            font-size: 1.2rem; /* Larger font size for better visibility */
         }
         .button-group {
             margin-top: 20px;
         }
-        footer {
-            margin-top: auto;
-            border-top: 1px solid #eaeaea;
-        }
-        footer a {
+        .footer {
+            background: linear-gradient(to right, #FE5858, #EE9617);
+            padding: 10px;
             color: white;
-     
-        }
-        footer a:hover {
-            text-decoration: underline;
+            text-align: center;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -62,14 +55,13 @@
 <div class="container mt-4">
     <h3>Enter the Order Details:</h3>
     <form id="orderForm">
-        <!-- Input Fields -->
         <div class="mb-3 row">
             <label for="halfLitreMilk" class="col-sm-4 col-form-label form-label">1/2 L Milk:</label>
             <div class="col-sm-6">
                 <div class="input-group input-group-lg">
                     <input type="number" class="form-control" id="halfLitreMilk" placeholder="0" oninput="calculateField('halfLitreMilk', 69)">
                 </div>
-                <div class="calculated-value" id="halfLitreMilkValue">₹0</div>
+                <div class="calculated-value" id="halfLitreMilkValue">₹ 0</div>
             </div>
         </div>
         <div class="mb-3 row">
@@ -78,7 +70,7 @@
                 <div class="input-group input-group-lg">
                     <input type="number" class="form-control" id="quarterLitreMilk" placeholder="0" oninput="calculateField('quarterLitreMilk', 17)">
                 </div>
-                <div class="calculated-value" id="quarterLitreMilkValue">₹0</div>
+                <div class="calculated-value" id="quarterLitreMilkValue">₹ 0</div>
             </div>
         </div>
         <div class="mb-3 row">
@@ -95,34 +87,16 @@
                 <div class="input-group input-group-lg mt-2">
                     <input type="number" class="form-control" id="oneLitreMilkAmount" placeholder="0" oninput="calculateOneLitreMilk()">
                 </div>
-                <div class="calculated-value" id="oneLitreMilkValue">₹0</div>
+                <div class="calculated-value" id="oneLitreMilkValue">₹ 0</div>
             </div>
         </div>
         <div class="mb-3 row">
-            <label for="tenRupeesMilk" class="col-sm-4 col-form-label form-label">₹10 Milk:</label>
+            <label for="butterMilk" class="col-sm-4 col-form-label form-label">1 L Milk Butter Milk/Juice:</label>
             <div class="col-sm-6">
                 <div class="input-group input-group-lg">
-                    <input type="number" class="form-control" id="tenRupeesMilk" placeholder="0" oninput="calculateField('tenRupeesMilk', 46)">
+                    <input type="number" class="form-control" id="butterMilk" placeholder="0" oninput="calculateField('butterMilk', 8)">
                 </div>
-                <div class="calculated-value" id="tenRupeesMilkValue">₹0</div>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="tenRupeesCurd" class="col-sm-4 col-form-label form-label">₹10 Curd:</label>
-            <div class="col-sm-6">
-                <div class="input-group input-group-lg">
-                    <input type="number" class="form-control" id="tenRupeesCurd" placeholder="0" oninput="calculateField('tenRupeesCurd', 9)">
-                </div>
-                <div class="calculated-value" id="tenRupeesCurdValue">₹0</div>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="halfPackCurd" class="col-sm-4 col-form-label form-label">1/2 p Curd:</label>
-            <div class="col-sm-6">
-                <div class="input-group input-group-lg">
-                    <input type="number" class="form-control" id="halfPackCurd" placeholder="0" oninput="calculateField('halfPackCurd', 36)">
-                </div>
-                <div class="calculated-value" id="halfPackCurdValue">₹0</div>
+                <div class="calculated-value" id="butterMilkValue">₹ 0</div>
             </div>
         </div>
         <div class="mb-3 row">
@@ -136,7 +110,34 @@
                     <input class="form-check-input" type="radio" id="oneBox" name="tenRupeesCup" value="1box" onclick="calculateCup()">
                     <label class="form-check-label" for="oneBox">1 Box (₹104)</label>
                 </div>
-                <div class="calculated-value" id="tenRupeesCupValue">₹0</div>
+                <div class="calculated-value" id="tenRupeesCupValue">₹ 0</div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="tenRupeesCurd" class="col-sm-4 col-form-label form-label">₹10 Curd:</label>
+            <div class="col-sm-6">
+                <div class="input-group input-group-lg">
+                    <input type="number" class="form-control" id="tenRupeesCurd" placeholder="0" oninput="calculateField('tenRupeesCurd', 9)">
+                </div>
+                <div class="calculated-value" id="tenRupeesCurdValue">₹ 0</div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="halfPackCurd" class="col-sm-4 col-form-label form-label">1/2 p Curd:</label>
+            <div class="col-sm-6">
+                <div class="input-group input-group-lg">
+                    <input type="number" class="form-control" id="halfPackCurd" placeholder="0" oninput="calculateField('halfPackCurd', 36)">
+                </div>
+                <div class="calculated-value" id="halfPackCurdValue">₹ 0</div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="tenRupeesMilk" class="col-sm-4 col-form-label form-label">₹10 Milk:</label>
+            <div class="col-sm-6">
+                <div class="input-group input-group-lg">
+                    <input type="number" class="form-control" id="tenRupeesMilk" placeholder="0" oninput="calculateField('tenRupeesMilk', 46)">
+                </div>
+                <div class="calculated-value" id="tenRupeesMilkValue">₹ 0</div>
             </div>
         </div>
         <div class="mb-3 row">
@@ -159,9 +160,9 @@
     </div>
 </div>
 
-<footer>
-    <p>Created by <a href="https://navaneethakrishnan.rf.gd/" target="_blank">Navaneetha Krishnan</a></p>
-</footer>
+<div class="footer">
+    <p>Created by Navaneetha Krishnan | <a href="https://navaneethakrishnan.rf.gd/" style="color: white;">Contact</a></p>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="script.js"></script>
