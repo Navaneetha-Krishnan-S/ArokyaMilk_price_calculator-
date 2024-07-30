@@ -1,1 +1,125 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Calculation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .header {
+            background-color: orange;
+            padding: 15px;
+            text-align: center;
+        }
+        .header h1 {
+            color: white;
+        }
+        .form-label {
+            margin-right: 10px;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+        }
+        .input-group input {
+            max-width: 100px;
+            margin-right: 10px;
+        }
+        .calculated-value {
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            .input-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .input-group input {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Arokya Milk</h1>
+</div>
+
+<div class="container mt-4">
+    <h3>Enter the Order Details:</h3>
+    <form id="orderForm">
+        <div class="mb-3 input-group">
+            <label for="halfLitreMilk" class="form-label">1/2 L Milk:</label>
+            <input type="number" class="form-control" id="halfLitreMilk" placeholder="0" oninput="calculateField('halfLitreMilk', 69)">
+            <span class="calculated-value" id="halfLitreMilkValue">₹0</span>
+        </div>
+        <div class="mb-3 input-group">
+            <label for="quarterLitreMilk" class="form-label">1/4 L Milk:</label>
+            <input type="number" class="form-control" id="quarterLitreMilk" placeholder="0" oninput="calculateField('quarterLitreMilk', 17)">
+            <span class="calculated-value" id="quarterLitreMilkValue">₹0</span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">1 L Milk:</label><br>
+            <input type="radio" id="bakery" name="oneLitreMilk" value="bakery" onclick="calculateOneLitreMilk()"> Bakery (65₹)
+            <input type="radio" id="shop" name="oneLitreMilk" value="shop" onclick="calculateOneLitreMilk()"> Shop (63₹)
+            <div class="input-group mt-2">
+                <input type="number" class="form-control" id="oneLitreMilkAmount" placeholder="0" oninput="calculateOneLitreMilk()">
+                <span class="calculated-value" id="oneLitreMilkValue">₹0</span>
+            </div>
+        </div>
+        <div class="mb-3 input-group">
+            <label for="tenRupeesMilk" class="form-label">₹10 Milk:</label>
+            <input type="number" class="form-control" id="tenRupeesMilk" placeholder="0" oninput="calculateField('tenRupeesMilk', 46)">
+            <span class="calculated-value" id="tenRupeesMilkValue">₹0</span>
+        </div>
+        <div class="mb-3 input-group">
+            <label for="tenRupeesCurd" class="form-label">₹10 Curd:</label>
+            <input type="number" class="form-control" id="tenRupeesCurd" placeholder="0" oninput="calculateField('tenRupeesCurd', 9)">
+            <span class="calculated-value" id="tenRupeesCurdValue">₹0</span>
+        </div>
+        <div class="mb-3 input-group">
+            <label for="halfPackCurd" class="form-label">1/2 p Curd:</label>
+            <input type="number" class="form-control" id="halfPackCurd" placeholder="0" oninput="calculateField('halfPackCurd', 36)">
+            <span class="calculated-value" id="halfPackCurdValue">₹0</span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">₹10 Cup:</label><br>
+            <input type="radio" id="sixPcs" name="tenRupeesCup" value="6pcs" onclick="calculateCup()"> 6 pcs (₹52)
+            <input type="radio" id="oneBox" name="tenRupeesCup" value="1box" onclick="calculateCup()"> 1 Box (₹104)
+            <span class="calculated-value" id="tenRupeesCupValue">₹0</span>
+        </div>
+        <div class="mb-3 input-group">
+            <label for="balance" class="form-label">Balance:</label>
+            <input type="number" class="form-control" id="balance" placeholder="0" oninput="calculateTotal()">
+        </div>
+    </form>
+
+    <div class="mt-4">
+        <h4>Total: ₹<span id="totalAmount">0</span></h4>
+    </div>
+
+    <div class="mt-4">
+        <h3>Simple Calculator:</h3>
+        <div class="mb-3 input-group">
+            <label for="calcInput1" class="form-label">Value 1:</label>
+            <input type="number" class="form-control" id="calcInput1">
+        </div>
+        <div class="mb-3 input-group">
+            <label for="operator" class="form-label">Operator (+, -, *, /):</label>
+            <input type="text" class="form-control" id="operator">
+        </div>
+        <div class="mb-3 input-group">
+            <label for="calcInput2" class="form-label">Value 2:</label>
+            <input type="number" class="form-control" id="calcInput2">
+        </div>
+        <button type="button" class="btn btn-primary" onclick="performCalculation()">Calculate</button>
+        <div class="mt-2">
+            <h4>Result: <span id="calcResult">0</span></h4>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
