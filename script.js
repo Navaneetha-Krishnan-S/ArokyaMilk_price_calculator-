@@ -90,7 +90,16 @@ function resetForm() {
 
 // Function to save the page as an image
 function saveAsImage() {
-    html2canvas(document.body).then(canvas => {
+    // Ensure full content is visible before capturing
+    document.body.style.height = "auto";
+    
+    html2canvas(document.body, {
+        scrollX: 0,
+        scrollY: 0,
+        width: document.body.scrollWidth,
+        height: document.body.scrollHeight,
+        useCORS: true // Enable CORS if needed
+    }).then(canvas => {
         const link = document.createElement('a');
         link.href = canvas.toDataURL('image/jpeg');
         link.download = 'siva_milk_agency.jpg';
