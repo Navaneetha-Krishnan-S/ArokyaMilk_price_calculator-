@@ -11,6 +11,7 @@ function displayCurrentDate() {
 // Call the function to display the date when the page loads
 displayCurrentDate();
 
+
 // Function to calculate and display values for input fields
 function calculateField(id, multiplier) {
     const input = document.getElementById(id);
@@ -81,7 +82,6 @@ function resetForm() {
     document.getElementById('orderForm').reset();
     document.querySelectorAll('.calculated-value').forEach(el => el.innerText = '₹ 0');
     document.getElementById('totalAmount').innerText = '0';
-    document.querySelectorAll('[data-selected]').forEach(el => el.dataset.selected = "false");
 }
 
 // Function to save the page as an image
@@ -108,26 +108,4 @@ function saveAsImage() {
     }).catch(err => {
         console.error('Error capturing the page:', err);
     });
-}
-
-// Function to toggle radio button selection
-function toggleRadioSelection(radioId) {
-    const radio = document.getElementById(radioId);
-    const isSelected = radio.dataset.selected === "true";
-
-    if (isSelected) {
-        radio.checked = false;
-        radio.dataset.selected = "false";
-    } else {
-        document.querySelectorAll(`[name="${radio.name}"]`).forEach(r => {
-            r.dataset.selected = "false";
-        });
-        radio.dataset.selected = "true";
-    }
-
-    if (radioId === 'bakery' || radioId === 'shop') {
-        calculateOneLitreMilk();
-    } else if (radioId === 'sixPcs' || radioId === 'oneBox') {
-        calculateCup();
-    }
 }
