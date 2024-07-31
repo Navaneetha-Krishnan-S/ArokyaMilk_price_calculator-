@@ -68,7 +68,6 @@
     <h3>Siva Milk Agency</h3>
     <div id="currentDate"></div> <!-- Placeholder for the current date -->
 </div>
-</div>
 
 <div class="container mt-4">
     <h3>Enter the Order Details:</h3>
@@ -95,11 +94,11 @@
             <label class="col-sm-4 col-form-label form-label">1 L Milk:</label>
             <div class="col-sm-6">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" id="bakery" name="oneLitreMilk" value="bakery" onclick="calculateOneLitreMilk()">
+                    <input class="form-check-input" type="radio" id="bakery" name="oneLitreMilk" value="bakery" data-selected="false" onclick="toggleRadioSelection('bakery')">
                     <label class="form-check-label" for="bakery">Bakery (₹65)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" id="shop" name="oneLitreMilk" value="shop" onclick="calculateOneLitreMilk()">
+                    <input class="form-check-input" type="radio" id="shop" name="oneLitreMilk" value="shop" data-selected="false" onclick="toggleRadioSelection('shop')">
                     <label class="form-check-label" for="shop">Shop (₹63)</label>
                 </div>
                 <div class="input-group input-group-lg mt-2">
@@ -121,11 +120,11 @@
             <label class="col-sm-4 col-form-label form-label">₹10 Cup:</label>
             <div class="col-sm-6">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" id="sixPcs" name="tenRupeesCup" value="6pcs" onclick="calculateCup()">
+                    <input class="form-check-input" type="radio" id="sixPcs" name="tenRupeesCup" value="6pcs" data-selected="false" onclick="toggleRadioSelection('sixPcs')">
                     <label class="form-check-label" for="sixPcs">6 pcs (₹52)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" id="oneBox" name="tenRupeesCup" value="1box" onclick="calculateCup()">
+                    <input class="form-check-input" type="radio" id="oneBox" name="tenRupeesCup" value="1box" data-selected="false" onclick="toggleRadioSelection('oneBox')">
                     <label class="form-check-label" for="oneBox">1 Box (₹104)</label>
                 </div>
                 <div class="calculated-value" id="tenRupeesCupValue">₹ 0</div>
@@ -178,10 +177,10 @@
     </div>
 </div>
 <div class="footer">
-    <p>Created by <a href="https://navaneethakrishnan.rf.gd/" style="color: white ; " >Navaneetha Krishnan</a></p>
+    <p>Created by <a href="https://navaneethakrishnan.rf.gd">Navaneetha Krishnan</a></p>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-<script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script src="script.js"></script> <!-- Link to the external JavaScript file -->
 </body>
 </html>
