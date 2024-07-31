@@ -12,6 +12,31 @@ function displayCurrentDate() {
 displayCurrentDate();
 
 
+// Function to handle the custom radio button deselection
+function handleRadioClick(event) {
+    const currentRadio = event.target;
+    if (currentRadio.dataset.waschecked === 'true') {
+        currentRadio.checked = false;
+        currentRadio.dataset.waschecked = 'false';
+    } else {
+        document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+            radio.dataset.waschecked = 'false';
+        });
+        currentRadio.dataset.waschecked = 'true';
+    }
+
+    // Update calculations
+    calculateOneLitreMilk();
+    calculateCup();
+}
+
+// Attach event listeners to the radio buttons
+document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+    radio.dataset.waschecked = radio.checked ? 'true' : 'false';
+    radio.addEventListener('click', handleRadioClick);
+});
+
+
 // Function to calculate and display values for input fields
 function calculateField(id, multiplier) {
     const input = document.getElementById(id);
